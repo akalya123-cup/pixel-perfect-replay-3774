@@ -47,9 +47,10 @@ export function classify(text: string): Classification {
   scores.sort((a, b) => b.score - a.score);
   const total = scores.reduce((n, s) => n + s.score, 0);
   if (!total) return { category: "Other", confidence: 0, alternatives: [], needsReview: true };
-  const confidence = scores[0].score / total;
+  const top = scores[0]!;
+  const confidence = top.score / total;
   return {
-    category: scores[0].category,
+    category: top.category,
     confidence,
     alternatives: scores.slice(1, 3).filter((s) => s.score > 0),
     needsReview: confidence < 0.6,
