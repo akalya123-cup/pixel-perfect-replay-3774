@@ -7,13 +7,13 @@ import type { Category, Priority } from "./triage";
 export type Role = "student" | "staff" | "admin";
 export type Status = "Pending" | "Assigned" | "In Progress" | "Resolved" | "Closed";
 
-export interface User { id: string; name: string; email: string; password: string; role: Role; department: string; skill?: Category }
-export interface Update { at: string; by: string; text: string; status?: Status }
+export interface User { id: string; name: string; email: string; password: string; role: Role; department: string; skill?: Category | undefined }
+export interface Update { at: string; by: string; text: string; status?: Status | undefined }
 export interface Complaint {
   id: string; ticket: string; title: string; description: string; building: string; floor: string; room: string;
   category: Category; aiCategory: Category; aiConfidence: number; priority: Priority;
-  status: Status; reporterId: string; assigneeId?: string; createdAt: string; updates: Update[];
-  image?: string; rating?: number;
+  status: Status; reporterId: string; assigneeId?: string | undefined; createdAt: string; updates: Update[];
+  image?: string | undefined; rating?: number | undefined;
 }
 
 export const DEMO_USERS: User[] = [

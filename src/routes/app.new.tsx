@@ -34,14 +34,14 @@ function NewComplaint() {
 
   const onFile = (file?: File) => {
     if (!file) return;
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) return toast.error("Use JPG, PNG or WEBP");
-    if (file.size > 2 * 1024 * 1024) return toast.error("Image must be under 2 MB");
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) { toast.error("Use JPG, PNG or WEBP"); return; }
+    if (file.size > 2 * 1024 * 1024) { toast.error("Image must be under 2 MB"); return; }
     const r = new FileReader(); r.onload = () => setImage(r.result as string); r.readAsDataURL(file);
   };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const er: Record<string, string> = {};
+    const er: Partial<Record<"title" | "description" | "building" | "room", string>> = {};
     if (f.title.trim().length < 5) er.title = "At least 5 characters";
     if (f.description.trim().length < 10) er.description = "At least 10 characters";
     if (!f.building) er.building = "Choose a building";
