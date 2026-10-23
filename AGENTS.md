@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Data lives in src/lib/store.tsx (browser storage, demo) and triage in src/lib/triage.ts (keyword fallback); user plans to swap both for their own FastAPI/MongoDB backend, so keep UI calling only these modules.
